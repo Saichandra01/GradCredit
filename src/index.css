@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    @apply text-frost bg-ink-surface antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  ::selection { background: rgba(34, 34, 34, 0.15); color: #222222; }
+}
+
+@layer components {
+  /* Glassmorphism — light theme */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-black/10;
+  }
+  .glass-dark {
+    @apply bg-ink-card/80 backdrop-blur-md border border-edge;
+  }
+  .glass-premium {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-white font-semibold rounded-xl
+           hover:bg-[#444444] active:scale-95 transition-all duration-200 shadow-card;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-primary font-semibold rounded-xl
+           border-2 border-brand-primary hover:bg-brand-primary/5
+           active:scale-95 transition-all duration-200;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-steely font-medium rounded-lg
+           hover:text-frost hover:bg-black/5 active:scale-95 transition-all duration-200;
+  }
+  .btn-outline-white {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-transparent text-frost font-semibold rounded-xl
+           border-2 border-frost/20 hover:bg-black/5 hover:border-frost/40
+           active:scale-95 transition-all duration-200;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-ink-card rounded-2xl border border-edge shadow-card transition-all duration-300
+           hover:shadow-card-hover hover:border-sg;
+  }
+  .card-premium {
+    @apply bg-ink-card rounded-3xl border border-edge shadow-premium transition-all duration-300;
+  }
+  .card-glass {
+    @apply glass-card rounded-2xl transition-all duration-300;
+  }
+
+  /* Typography */
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-frost tracking-tight;
+  }
+  .section-subtitle {
+    @apply text-steely text-lg leading-relaxed;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #222222 0%, #555555 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .gradient-text-amber {
+    background: linear-gradient(135deg, #555555 0%, #A2A2A2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Form elements */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-edge bg-white text-frost placeholder-steely/50
+           focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary/50
+           transition-all duration-200;
+  }
+  .label {
+    @apply block text-sm font-medium text-steely mb-1.5;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-primary { @apply bg-brand-primary/10 text-brand-primary; }
+  .badge-success { @apply bg-brand-success/15 text-brand-success; }
+  .badge-blue { @apply bg-brand-blue/15 text-brand-blue; }
+  .badge-amber { @apply bg-brand-amber/15 text-brand-amber; }
+  .badge-purple { @apply bg-brand-purple/15 text-brand-purple; }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-sm font-medium text-steely hover:text-frost transition-colors duration-200 relative
+           after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-primary
+           after:transition-all after:duration-200 hover:after:w-full;
+  }
+
+  /* Section padding */
+  .section-pad {
+    @apply py-16 md:py-24;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #FAFAFA; }
+  ::-webkit-scrollbar-thumb { background: #D1D1D1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #A2A2A2; }
+
+  /* Keyframe animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float { animation: float 4s ease-in-out infinite; }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.04; }
+    50% { opacity: 0.08; }
+  }
+  .animate-pulse-slow { animation: pulse-slow 5s ease-in-out infinite; }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
+  .shadow-card-hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+
+  /* Grid pattern background — light theme */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .dot-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0);
+    background-size: 48px 48px;
+  }
+
+  /* Premium gradient backgrounds — Hero uses dark charcoal, sections stay light */
+  .bg-gradient-hero {
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, #2A2A2A 0%, #1E1E1E 60%, #1A1A1A 100%);
+  }
+  .bg-gradient-section {
+    background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+  }
+
+  /* Hero-specific dark glass cards */
+  .hero-glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .hero-glass-badge {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Hover glow — subtle dark shadow on light bg */
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  /* ===== Portal (authenticated) theme overrides ===== */
+  /* Light grayscale banking-style theme for all pages after login.
+     Applied via .portal-theme wrapper on Portal/Auth/Admin roots. */
+
+  .portal-theme {
+    background: #FAFAFA;
+    color: #222222;
+  }
+
+  /* Buttons — grayscale */
+  .portal-theme .btn-primary {
+    @apply bg-ob text-pw;
+  }
+  .portal-theme .btn-primary:hover {
+    @apply bg-[#444444] brightness-100;
+  }
+  .portal-theme .btn-secondary {
+    @apply bg-sg text-ob border-2 border-ob;
+  }
+  .portal-theme .btn-secondary:hover {
+    @apply bg-si/30;
+  }
+  .portal-theme .btn-ghost {
+    @apply text-si hover:text-ob hover:bg-sg/40;
+  }
+
+  /* Cards — white with light gray borders */
+  .portal-theme .card {
+    @apply bg-white border-sg/50 shadow-[0_2px_8px_rgba(0,0,0,0.06)];
+  }
+  .portal-theme .card:hover {
+    @apply shadow-[0_4px_16px_rgba(0,0,0,0.1)] border-sg;
+  }
+  .portal-theme .card-premium {
+    @apply bg-white border-sg/50;
+  }
+  .portal-theme .card-glass {
+    @apply bg-sg/20 border-sg/50;
+  }
+
+  /* Forms */
+  .portal-theme .input-field {
+    @apply bg-pw border-sg text-ob placeholder-si;
+  }
+  .portal-theme .input-field:focus {
+    @apply border-ob ring-ob/20;
+  }
+  .portal-theme .label {
+    @apply text-si;
+  }
+
+  /* Badges — grayscale */
+  .portal-theme .badge-primary { @apply bg-sg/40 text-ob; }
+  .portal-theme .badge-success { @apply bg-success-500/15 text-success-600; }
+  .portal-theme .badge-blue { @apply bg-sg/30 text-ob; }
+  .portal-theme .badge-amber { @apply bg-sg/30 text-si; }
+  .portal-theme .badge-purple { @apply bg-sg/30 text-ob; }
+
+  /* Scrollbar */
+  .portal-theme ::-webkit-scrollbar-track { background: #FAFAFA; }
+  .portal-theme ::-webkit-scrollbar-thumb { background: #D1D1D1; }
+  .portal-theme ::-webkit-scrollbar-thumb:hover { background: #A2A2A2; }
+
+  /* Selection */
+  .portal-theme ::selection { background: rgba(34, 34, 34, 0.15); color: #222222; }
+}
