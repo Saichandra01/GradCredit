@@ -19,7 +19,7 @@ function StatCard({ stat, start }: { stat: typeof stats[0]; start: boolean }) {
                       group-hover:bg-brand-primary group-hover:scale-110 transition-all duration-300">
         <Icon className="w-5 h-5 text-brand-primary group-hover:text-ink-base transition-colors duration-300" />
       </div>
-      <div className="text-3xl md:text-4xl font-bold text-frost tracking-tight">
+      <div className="text-3xl md:text-4xl font-bold text-frost tracking-tight tabular-nums min-h-[64px] flex items-center justify-center">
         {stat.prefix}{count.toLocaleString('en-IN')}{stat.suffix}
       </div>
       <div className="text-steely text-sm mt-1">{stat.label}</div>
