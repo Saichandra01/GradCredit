@@ -4,6 +4,8 @@ import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import Portal from './pages/Portal';
 import AdminDashboard from './pages/AdminDashboard';
+import OfferPopup from "./components/OfferPopup";
+
 
 type View = 'landing' | 'auth' | 'portal' | 'admin';
 
@@ -98,14 +100,17 @@ export default function App() {
   }
 
   return (
+  <>
+    <OfferPopup />
+
     <LandingPage
       onLogin={() => setView('auth')}
       onRegister={() => setView('auth')}
       onCheckEligibility={() => {
-        // Check if already logged in
         supabase.auth.getSession().then(({ data }) => {
           if (data.session) {
             const email = data.session.user.email ?? '';
+
             if (ADMIN_EMAILS.includes(email)) {
               setView('admin');
             } else {
@@ -113,12 +118,12 @@ export default function App() {
               setView('portal');
             }
           } else {
-            // Not logged in — go to auth, then portal will open eligibility
             setPendingEligibility(true);
             setView('auth');
           }
         });
       }}
     />
-  );
+  </>
+);
 }
