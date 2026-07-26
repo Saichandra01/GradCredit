@@ -36,7 +36,7 @@ export default function Hero({ onApply, onCheckEligibility }: { onApply: () => v
 
             {/* Sub-heading */}
             <h2 className="text-xl sm:text-2xl font-semibold text-white/80 mb-5 leading-snug animate-slide-up">
-              One Application. 100+ Banks. The Best Education Loan Offers.
+              One Application. 20+ Banks. The Best Education Loan Offers.
             </h2>
 
             {/* Description */}
@@ -221,7 +221,7 @@ function HeroDashboard() {
             <GraduationCap className="w-4 h-4 text-brand-amber" />
           </div>
           <div>
-            <div className="text-white text-xs font-semibold">100+ Banks</div>
+            <div className="text-white text-xs font-semibold">20+ Banks</div>
             <div className="text-white/40 text-xs">Compared instantly</div>
           </div>
         </div>

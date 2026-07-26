@@ -170,7 +170,7 @@ export default function Portal({ onLogout, isAdmin, initialActive }: { onLogout:
             <GraduationCap className="w-5 h-5 text-ob" />
           </div>
           <div className="min-w-0">
-            <span className="font-bold text-pw text-sm block truncate">Pathfinders</span>
+            <span className="font-bold text-pw text-sm block truncate">GradCredit</span>
             <span className="text-si text-xs">{isAdmin ? 'Admin Panel' : 'Student Portal'}</span>
           </div>
         </div>

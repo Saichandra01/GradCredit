@@ -95,7 +95,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
             <GraduationCap className="w-5 h-5 text-pw" />
           </div>
           <div>
-            <span className="font-bold text-pw text-base">Pathfinders Overseas</span>
+            <span className="font-bold text-pw text-base">GradCredit</span>
             <span className="text-pw/40 text-xs ml-2">Admin Dashboard</span>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { Building2, Users, IndianRupee, BadgeCheck, Clock } from 'lucide-react';
 import { useAnimatedCounter } from '../../hooks/useAnimatedCounter';
 
 const stats = [
-  { icon: Building2, value: 100, suffix: '+', label: 'Partner Banks' },
+  { icon: Building2, value: 20, suffix: '+', label: 'Partner Banks' },
   { icon: Users, value: 10000, suffix: '+', label: 'Students Assisted' },
   { icon: IndianRupee, value: 1000, prefix: '₹', suffix: '+ Crores', label: 'Education Loans Facilitated' },
   { icon: BadgeCheck, value: 98, suffix: '%', label: 'Approval Assistance' },
