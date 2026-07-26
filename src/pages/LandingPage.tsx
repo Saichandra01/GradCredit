@@ -18,25 +18,43 @@ import OfficeContact from '../components/landing/OfficeContact';
 import Footer from '../components/landing/Footer';
 import CountryModal from '../components/landing/CountryModal';
 import BankModal from '../components/landing/BankModal';
+import EmployeePortal from '../components/landing/EmployeePortal';
+
 import type { CountryInfo } from '../data/countries';
 import type { BankInfo } from '../data/banks';
+
+interface LandingPageProps {
+  onLogin: () => void;
+  onRegister: () => void;
+  onCheckEligibility: () => void;
+  onEmployeeLogin: () => void;
+}
 
 export default function LandingPage({
   onLogin,
   onRegister,
   onCheckEligibility,
-}: {
-  onLogin: () => void;
-  onRegister: () => void;
-  onCheckEligibility: () => void;
-}) {
-  const [selectedCountry, setSelectedCountry] = useState<CountryInfo | null>(null);
-  const [selectedBank, setSelectedBank] = useState<BankInfo | null>(null);
+  onEmployeeLogin,
+}: LandingPageProps) {
+  const [selectedCountry, setSelectedCountry] =
+    useState<CountryInfo | null>(null);
+
+  const [selectedBank, setSelectedBank] =
+    useState<BankInfo | null>(null);
 
   return (
     <div className="min-h-screen bg-ink-surface">
-      <Navbar onLogin={onLogin} onRegister={onRegister} />
-      <Hero onApply={onRegister} onCheckEligibility={onCheckEligibility} />
+      <Navbar
+        onLogin={onLogin}
+        onRegister={onRegister}
+        onEmployeeLogin={onEmployeeLogin}
+      />
+
+      <Hero
+        onApply={onRegister}
+        onCheckEligibility={onCheckEligibility}
+      />
+
       <Stats />
       <About />
       <WhyChoose />
@@ -50,15 +68,27 @@ export default function LandingPage({
       <LoanCalculator onApply={onRegister} />
       <FAQ />
       <FinalCTA onApply={onRegister} />
-      <OfficeContact onConsult={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} />
+
+      <OfficeContact
+        onConsult={() =>
+          document
+            .getElementById('contact')
+            ?.scrollIntoView({ behavior: 'smooth' })
+        }
+      />
+
+      <EmployeePortal
+        onEmployeeLogin={onEmployeeLogin}
+      />
+
       <Footer />
 
-      {/* Modals */}
       <CountryModal
         country={selectedCountry}
         onClose={() => setSelectedCountry(null)}
         onApply={onRegister}
       />
+
       <BankModal
         bank={selectedBank}
         onClose={() => setSelectedBank(null)}

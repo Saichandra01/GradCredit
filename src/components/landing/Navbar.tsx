@@ -11,7 +11,15 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar({ onLogin, onRegister }: { onLogin: () => void; onRegister: () => void }) {
+export default function Navbar({
+  onLogin,
+  onRegister,
+  onEmployeeLogin,
+}: {
+  onLogin: () => void;
+  onRegister: () => void;
+  onEmployeeLogin: () => void;
+}){
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -45,15 +53,40 @@ export default function Navbar({ onLogin, onRegister }: { onLogin: () => void; o
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map(l => (
-              <a key={l.label} href={l.href} className={`text-sm font-medium transition-colors duration-200 relative
-                after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-200 hover:after:w-full
-                ${scrolled ? 'text-steely hover:text-frost after:bg-brand-primary' : 'text-white/70 hover:text-white'}`}>
-                {l.label}
-              </a>
-            ))}
-          </nav>
+         <nav className="hidden md:flex items-center gap-6">
+  {navLinks.map((l) => (
+    <a
+      key={l.label}
+      href={l.href}
+      className={`text-sm font-medium transition-colors duration-200 relative
+      after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-200 hover:after:w-full
+      ${
+        scrolled
+          ? "text-steely hover:text-frost after:bg-brand-primary"
+          : "text-white/70 hover:text-white"
+      }`}
+    >
+      {l.label}
+    </a>
+  ))}
+
+<button
+  onClick={() =>
+    document
+      .getElementById("employee-portal")
+      ?.scrollIntoView({
+        behavior: "smooth",
+      })
+  }
+    className={`text-sm font-medium transition-colors duration-200 ${
+      scrolled
+        ? "text-steely hover:text-frost"
+        : "text-white/70 hover:text-white"
+    }`}
+  >
+    Employee Login
+  </button>
+</nav>
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">

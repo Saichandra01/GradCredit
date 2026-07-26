@@ -4,10 +4,13 @@ import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import Portal from './pages/Portal';
 import AdminDashboard from './pages/AdminDashboard';
+import EmployeeDashboard from './pages/EmployeeDashboard';
+import EmployeeLogin from "./pages/EmployeeLogin";
 import OfferPopup from "./components/OfferPopup";
 
 
-type View = 'landing' | 'auth' | 'portal' | 'admin';
+
+type View = 'landing' | 'auth' | 'portal' | 'admin' | 'employeeLogin' | 'employee';
 
 const ADMIN_EMAILS = ['admin@pathfindersoverseas.com', 'dev@pathfindersoverseas.com'];
 
@@ -94,18 +97,36 @@ export default function App() {
       />
     );
   }
+if (view === 'employeeLogin') {
+  return (
+    <EmployeeLogin
+      onLogin={() => setView('employee')}
+      onBack={() => setView('landing')}
+    />
+  );
+}
 
-  if (view === 'admin') {
-    return <AdminDashboard onBack={() => supabase.auth.signOut().then(() => setView('landing'))} />;
-  }
+if (view === 'employee') {
+  return <EmployeeDashboard />;
+}
+
+if (view === 'admin') {
+  return (
+    <AdminDashboard
+      onBack={() => supabase.auth.signOut().then(() => setView('landing'))}
+    />
+  );
+}
 
   return (
   <>
     <OfferPopup />
 
-    <LandingPage
-      onLogin={() => setView('auth')}
-      onRegister={() => setView('auth')}
+<LandingPage
+  onLogin={() => setView('auth')}
+  onRegister={() => setView('auth')}
+  onEmployeeLogin={() => setView('employeeLogin')}
+
       onCheckEligibility={() => {
         supabase.auth.getSession().then(({ data }) => {
           if (data.session) {
