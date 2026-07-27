@@ -6,8 +6,6 @@ import Portal from './pages/Portal';
 import AdminDashboard from './pages/AdminDashboard';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import EmployeeLogin from "./pages/EmployeeLogin";
-import OfferPopup from "./components/OfferPopup";
-
 
 
 type View = 'landing' | 'auth' | 'portal' | 'admin' | 'employeeLogin' | 'employee';
@@ -120,13 +118,10 @@ if (view === 'admin') {
 
   return (
   <>
-    <OfferPopup />
-
-<LandingPage
-  onLogin={() => setView('auth')}
-  onRegister={() => setView('auth')}
-  onEmployeeLogin={() => setView('employeeLogin')}
-
+    <LandingPage
+      onLogin={() => setView('auth')}
+      onRegister={() => setView('auth')}
+      onEmployeeLogin={() => setView('employeeLogin')}
       onCheckEligibility={() => {
         supabase.auth.getSession().then(({ data }) => {
           if (data.session) {
