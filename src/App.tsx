@@ -118,7 +118,6 @@ if (view === 'admin') {
 
   return (
   <>
-    <OfferPopup />
 
 <LandingPage
   onLogin={() => setView('auth')}
