@@ -42,14 +42,15 @@ export default function Navbar({
             <div className="w-9 h-9 bg-white rounded-xl flex items-center justify-center shadow-card">
               <GraduationCap className="w-5 h-5 text-[#222222]" />
             </div>
-            <div>
-              <span className={`font-bold text-base leading-tight block transition-colors duration-300 ${scrolled ? 'text-frost' : 'text-white'}`}>
-                GradCredit
-              </span>
-              <span className={`text-xs leading-tight block transition-colors duration-300 ${scrolled ? 'text-steely' : 'text-white/60'}`}>
-                Bridging Borders. Fueling Futures.
-              </span>
-            </div>
+          <div>
+  <span
+    className={`font-bold text-xl leading-tight block transition-colors duration-300 ${
+      scrolled ? 'text-frost' : 'text-white'
+    }`}
+  >
+    GradCredit
+  </span>
+</div>
           </a>
 
           {/* Desktop nav */}
