@@ -114,18 +114,18 @@ export default function Navbar({
           </div>
 
           {/* Mobile menu toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-frost hover:bg-black/5' : 'text-white hover:bg-white/10'}`}
-          >
-            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+     <button
+  onClick={() => setOpen(!open)}
+  className="lg:hidden p-2 rounded-lg"
+>
+  {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+</button>
         </div>
       </div>
 
       {/* Mobile drawer */}
-      {open && (
-  <div className="absolute top-full right-4 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 animate-slide-up">
+     {open && (
+  <div className="lg:hidden absolute top-full right-4 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 animate-slide-up">
           <div className="px-4 py-4 space-y-1">
             {navLinks.map(l => (
               <a
