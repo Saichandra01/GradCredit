@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { CheckCircle2, Send, AlertCircle, FileText, Users, GraduationCap, CreditCard, BarChart3, Home, Upload, Sliders } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props { applicationId: string | null; onNavigate: (id: NavId) => void; onStepComplete: (id: NavId) => void; submitMode?: boolean; }
 
@@ -87,6 +88,13 @@ export default function ReviewApplication({ applicationId, onNavigate, onStepCom
   if (submitted) {
     return (
       <div className="max-w-lg mx-auto py-12">
+        <button
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
         <div className="card p-10 flex flex-col items-center gap-4 text-center">
           <div className="w-16 h-16 bg-success-500/15 rounded-full flex items-center justify-center">
             <CheckCircle2 className="w-8 h-8 text-success-600" />
@@ -103,24 +111,49 @@ export default function ReviewApplication({ applicationId, onNavigate, onStepCom
     );
   }
 
-  if (!app) {
-    return (
-      <div className="max-w-lg mx-auto py-12 text-center">
-        <div className="card p-10 flex flex-col items-center gap-4">
-          <AlertCircle className="w-10 h-10 text-sg" />
-          <h3 className="font-bold text-ob">No Application Found</h3>
-          <p className="text-si text-sm">Please complete the application sections before reviewing.</p>
-          <button onClick={() => onNavigate('personal')} className="btn-primary text-sm py-2.5">Start Application</button>
-        </div>
+ if (!app) {
+  return (
+    <div className="max-w-lg mx-auto py-12">
+
+      <button
+        onClick={() => onNavigate("dashboard")}
+        className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        Back
+      </button>
+
+      <div className="card p-10 flex flex-col items-center gap-4 text-center">
+        <AlertCircle className="w-10 h-10 text-sg" />
+        <h3 className="font-bold text-ob">No Application Found</h3>
+        <p className="text-si text-sm">
+          Please complete the application sections before reviewing.
+        </p>
+
+        <button
+          onClick={() => onNavigate("personal")}
+          className="btn-primary text-sm py-2.5"
+        >
+          Start Application
+        </button>
       </div>
-    );
-  }
+
+    </div>
+  );
+}
 
   const pi = app.personal_info ?? {};
   const ai = app.academic_info ?? {};
 
   return (
     <div className="max-w-3xl mx-auto space-y-5">
+      <button
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
       <div className="p-4 bg-si/20 border border-sg/40 rounded-xl flex items-start gap-3">
         <AlertCircle className="w-5 h-5 text-ob shrink-0 mt-0.5" />
         <div className="text-sm text-ob">Please review all sections carefully before submitting. You can click <strong>Edit</strong> on any section to make changes.</div>

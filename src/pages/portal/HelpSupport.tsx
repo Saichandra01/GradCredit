@@ -1,5 +1,6 @@
 import { Phone, Mail, MessageCircle, Book, FileText, Video, ChevronRight } from 'lucide-react';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 const guides = [
   { title: 'How to Complete Your Application', desc: 'Step-by-step guide to filling out each section of your application.', id: 'personal' as NavId },
@@ -20,6 +21,14 @@ const faqs = [
 export default function HelpSupport({ onNavigate }: { onNavigate: (id: NavId) => void }) {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
+      <button
+  type="button"
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
       {/* Contact options */}
       <div className="grid sm:grid-cols-3 gap-4">
         {[

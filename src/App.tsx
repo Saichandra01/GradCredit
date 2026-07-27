@@ -16,7 +16,7 @@ export default function App() {
   const [view, setView] = useState<View>('landing');
   const [loading, setLoading] = useState(true);
   const [pendingEligibility, setPendingEligibility] = useState(false);
-
+  const [authMode, setAuthMode] = useState<"login" | "register">("login");
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
@@ -65,17 +65,17 @@ export default function App() {
     );
   }
 
-  if (view === 'auth') {
-    return (
-      <AuthPage
-        onBack={() => setView('landing')}
-        onSuccess={() => {
-          // onAuthStateChange will set view to 'portal' or 'admin'
-          // pendingEligibility is consumed by Portal via initialActive
-        }}
-      />
-    );
-  }
+ if (view === 'auth') {
+  return (
+    <AuthPage
+      initialMode={authMode}
+      onBack={() => setView('landing')}
+      onSuccess={() => {
+        // onAuthStateChange will set view to 'portal' or 'admin'
+      }}
+    />
+  );
+}
 
   if (view === 'portal') {
     const initial = pendingEligibility ? ('eligibility' as const) : undefined;
@@ -118,10 +118,13 @@ if (view === 'admin') {
 
   return (
   <>
-    <LandingPage
-      onLogin={() => setView('auth')}
-      onRegister={() => setView('auth')}
-      onEmployeeLogin={() => setView('employeeLogin')}
+    <OfferPopup />
+
+<LandingPage
+  onLogin={() => setView('auth')}
+  onRegister={() => setView('auth')}
+  onEmployeeLogin={() => setView('employeeLogin')}
+
       onCheckEligibility={() => {
         supabase.auth.getSession().then(({ data }) => {
           if (data.session) {

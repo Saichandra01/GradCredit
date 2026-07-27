@@ -3,6 +3,7 @@ import { Save, CheckCircle2, ChevronRight, GraduationCap, TrendingUp, FileText, 
 import { supabase } from '../../lib/supabase';
 import { downloadSectionPdf } from '../../lib/pdf';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props {
   applicationId: string | null;
@@ -188,6 +189,14 @@ export default function NonCollateralDetails({ applicationId, loanType, onNaviga
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
+      <button
+  type="button"
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
       <div className="flex items-center gap-2 px-1">
         <span className="badge bg-ob text-pw text-xs">Non-Collateral Loan</span>
         <span className="text-si text-xs">Assessed on academic profile + co-applicant financial strength</span>

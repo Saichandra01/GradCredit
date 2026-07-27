@@ -1,8 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Save, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { ArrowLeft } from "lucide-react";
 
-export default function ProfileSettings({ user }: { user: { email: string; full_name?: string } | null }) {
+import type { NavId } from "../Portal";
+
+export default function ProfileSettings({
+  user,
+  onNavigate,
+}: {
+  user: { email: string; full_name?: string } | null;
+  onNavigate: (id: NavId) => void;
+}) {
   const [form, setForm] = useState({ full_name: '', phone: '', city: '', country: '', date_of_birth: '', address: '' });
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -45,9 +54,19 @@ export default function ProfileSettings({ user }: { user: { email: string; full_
 
   const upd = (k: string, v: string) => setForm(p => ({ ...p, [k]: v }));
 
-  return (
-    <div className="max-w-2xl mx-auto">
-      <div className="card p-6 md:p-8">
+ return (
+  <div className="max-w-2xl mx-auto">
+
+    <button
+      type="button"
+      onClick={() => onNavigate("dashboard")}
+      className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+    >
+      <ArrowLeft className="w-5 h-5" />
+      Back
+    </button>
+
+    <div className="card p-6 md:p-8">
         {/* Avatar */}
         <div className="flex items-center gap-4 mb-8 pb-8 border-b border-sg/30">
           <div className="w-16 h-16 bg-ob rounded-full flex items-center justify-center">

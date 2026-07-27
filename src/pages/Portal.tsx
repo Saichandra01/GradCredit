@@ -302,26 +302,133 @@ export default function Portal({ onLogout, isAdmin, initialActive }: { onLogout:
         </header>
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
-          {active === 'dashboard'      && <Dashboard onNavigate={navigate} applicationId={applicationId} completedSteps={completedSteps} userId={user?.id} loanType={loanType} />}
-          {active === 'personal'       && <PersonalInfo {...sharedProps} />}
-          {active === 'co_applicant'   && <CoApplicantDetails {...sharedProps} />}
-          {active === 'education'      && <EducationalInfo {...sharedProps} />}
-          {active === 'loan_req'       && <LoanRequirement {...sharedProps} onLoanTypeChange={handleLoanTypeChange} />}
-          {active === 'income'         && <IncomeDetails {...sharedProps} />}
-          {active === 'financial'      && <FinancialDetails {...sharedProps} />}
-          {active === 'collateral'     && <CollateralDetails {...sharedProps} loanType={loanType} />}
-          {active === 'non_collateral' && <NonCollateralDetails {...sharedProps} loanType={loanType} />}
-          {active === 'eligibility'    && <EligibilityAssessment applicationId={applicationId} onNavigate={navigate} />}
-          {active === 'documents'      && <DocumentUpload {...sharedProps} />}
-          {active === 'loan_pref'      && <LoanPreferences {...sharedProps} />}
-          {active === 'review'         && <ReviewApplication {...sharedProps} />}
-          {active === 'submit'         && <ReviewApplication {...sharedProps} submitMode />}
-          {active === 'status'         && <ApplicationStatus applicationId={applicationId} />}
-          {active === 'notifications'  && <Notifications onRead={() => loadUnread(user?.id ?? '')} />}
-          {active === 'appointments'   && <Appointments />}
-          {active === 'profile'        && <ProfileSettings user={user} />}
-          {active === 'settings'       && <SettingsPage />}
-          {active === 'help'           && <HelpSupport onNavigate={navigate} />}
+          {active === 'dashboard' && (
+  <Dashboard
+    onNavigate={navigate}
+    applicationId={applicationId}
+    completedSteps={completedSteps}
+    userId={user?.id}
+    loanType={loanType}
+  />
+)}
+
+{active === 'personal' && (
+  <PersonalInfo
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+          {active === 'co_applicant' && (
+  <CoApplicantDetails
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+        {active === 'education' && (
+  <EducationalInfo
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+          {active === 'loan_req' && (
+  <LoanRequirement
+    {...sharedProps}
+    onLoanTypeChange={handleLoanTypeChange}
+    onNavigate={navigate}
+  />
+)}
+     {active === 'income' && (
+  <IncomeDetails
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+          {active === 'financial' && (
+  <FinancialDetails
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+         {active === 'collateral' && (
+  <CollateralDetails
+    {...sharedProps}
+    loanType={loanType}
+    onNavigate={navigate}
+  />
+)}
+         {active === 'non_collateral' && (
+  <NonCollateralDetails
+    {...sharedProps}
+    loanType={loanType}
+    onNavigate={navigate}
+  />
+)}
+          {active === 'eligibility' && (
+  <EligibilityAssessment
+    applicationId={applicationId}
+    onNavigate={navigate}
+  />
+)}
+       {active === 'documents' && (
+  <DocumentUpload
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+
+{active === 'loan_pref' && (
+  <LoanPreferences
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+      {active === 'review' && (
+  <ReviewApplication
+    {...sharedProps}
+    onNavigate={navigate}
+  />
+)}
+
+{active === 'submit' && (
+<ReviewApplication
+    {...sharedProps}
+    submitMode
+    onNavigate={navigate}
+  />
+)}
+          {active === 'status' && (
+  <ApplicationStatus
+    applicationId={applicationId}
+    onNavigate={navigate}
+  />
+)}
+          {active === 'notifications' && (
+  <Notifications
+    onRead={() => loadUnread(user?.id ?? '')}
+    onNavigate={navigate}
+  />
+)}
+      {active === 'appointments' && (
+  <Appointments onNavigate={navigate} />
+)}
+      {active === 'profile' && (
+  <ProfileSettings
+    user={user}
+    onNavigate={navigate}
+  />
+)}
+
+{active === 'settings' && (
+  <SettingsPage
+    onNavigate={navigate}
+  />
+)}
+
+{active === 'help' && (
+  <HelpSupport
+    onNavigate={navigate}
+  />
+)}
         </main>
       </div>
     </div>

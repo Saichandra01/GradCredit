@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GraduationCap, Eye, EyeOff, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 type Mode = 'login' | 'register';
 
-export default function AuthPage({ onBack, onSuccess }: { onBack: () => void; onSuccess: () => void }) {
-  const [mode, setMode] = useState<Mode>('register');
-  const [form, setForm] = useState({ fullName: '', email: '', phone: '', password: '', confirm: '' });
+interface AuthPageProps {
+  onBack: () => void;
+  onSuccess: () => void;
+  initialMode?: "login" | "register";
+}
+
+export default function AuthPage({
+  onBack,
+  onSuccess,
+  initialMode = "login",
+}: AuthPageProps) { 
+const [mode, setMode] = useState<Mode>(initialMode as Mode);  
+useEffect(() => {
+  setMode(initialMode as Mode);
+}, [initialMode]);
+const [form, setForm] = useState({ fullName: '', email: '', phone: '', password: '', confirm: '' });
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

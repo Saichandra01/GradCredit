@@ -7,6 +7,7 @@ import {
 import { supabase } from '../../lib/supabase';
 import { downloadSectionPdf } from '../../lib/pdf';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props {
   applicationId: string | null;
@@ -60,7 +61,10 @@ const DOC_MAP: Record<string, string[]> = {
   'Bank Statements (Last 12 Months)': ['Bank Statements (Last 12 Months)'],
 };
 
-export default function EligibilityAssessment({ applicationId, onNavigate }: Props) {
+export default function EligibilityAssessment({
+  applicationId,
+  onNavigate,
+}: Props) {
   const [loading, setLoading] = useState(true);
   const [app, setApp] = useState<any>(null);
   const [coApplicant, setCoApplicant] = useState<any>(null);
@@ -279,6 +283,14 @@ export default function EligibilityAssessment({ applicationId, onNavigate }: Pro
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
+      <button
+  type="button"
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
       {/* Header */}
       <div className="card p-6">
         <div className="flex items-start gap-4">

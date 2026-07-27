@@ -108,14 +108,14 @@ export default function Navbar({
                   : 'bg-white text-[#222222] hover:bg-white/90'
               }`}
             >
-              Apply Now
+               Register
             </button>
           </div>
 
           {/* Mobile menu toggle */}
           <button
             onClick={() => setOpen(!open)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-frost hover:bg-black/5' : 'text-white hover:bg-white/10'}`}
+            className={`p-2 rounded-lg transition-colors ${scrolled ? 'text-frost hover:bg-black/5' : 'text-white hover:bg-white/10'}`}
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -124,7 +124,7 @@ export default function Navbar({
 
       {/* Mobile drawer */}
       {open && (
-        <div className="md:hidden bg-ink-card/95 backdrop-blur-xl border-t border-edge animate-slide-up">
+  <div className="absolute top-full right-4 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 animate-slide-up">
           <div className="px-4 py-4 space-y-1">
             {navLinks.map(l => (
               <a
@@ -138,7 +138,7 @@ export default function Navbar({
             ))}
             <div className="pt-3 border-t border-edge flex flex-col gap-2">
               <button onClick={() => { onLogin(); setOpen(false); }} className="btn-secondary text-sm justify-center py-2.5">Sign In</button>
-              <button onClick={() => { onRegister(); setOpen(false); }} className="btn-primary text-sm justify-center py-2.5">Apply Now</button>
+              <button onClick={() => { onRegister(); setOpen(false); }} className="btn-primary text-sm justify-center py-2.5"> Register</button>
             </div>
           </div>
         </div>

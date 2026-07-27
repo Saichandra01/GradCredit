@@ -3,6 +3,7 @@ import { Save, CheckCircle2, ChevronRight, Download } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { downloadSectionPdf } from '../../lib/pdf';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props { applicationId: string | null; onNavigate: (id: NavId) => void; onStepComplete: (id: NavId) => void; }
 
@@ -70,9 +71,18 @@ export default function PersonalInfo({ applicationId, onNavigate, onStepComplete
     if (andContinue) onNavigate('co_applicant');
   };
 
-  return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      <div className="card p-6">
+return (
+  <div className="max-w-3xl mx-auto space-y-6">
+
+    <button
+      onClick={() => onNavigate("dashboard")}
+      className="flex items-center gap-2 text-gray-600 hover:text-black font-medium"
+    >
+      <ArrowLeft className="w-5 h-5" />
+      Back
+    </button>
+
+    <div className="card p-6">
         <h2 className="font-bold text-ob text-base mb-1">Personal Information</h2>
         <p className="text-si text-sm mb-6">Fill in your personal details as they appear on your official documents.</p>
 

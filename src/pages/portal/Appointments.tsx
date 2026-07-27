@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Calendar, Clock, CheckCircle2, Plus, X, ChevronDown } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { ArrowLeft } from "lucide-react";
 
 const counselors = ['Dr. Anand Mehta', 'Ms. Preethi Nair', 'Mr. Rohan Kapoor', 'Ms. Divya Sharma', 'Any Available Counselor'];
 const TYPES = [
@@ -21,7 +22,13 @@ const statusBadge: Record<string, string> = {
   rescheduled: 'bg-si/20 text-ob',
 };
 
-export default function Appointments() {
+interface AppointmentsProps {
+  onNavigate: (page: string) => void;
+}
+
+export default function Appointments({
+  onNavigate,
+}: AppointmentsProps) {
   const [appointments, setAppointments] = useState<any[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ appointment_type: 'general', counselor_name: 'Any Available Counselor', preferred_date: '', preferred_time: '', notes: '' });
@@ -59,11 +66,20 @@ export default function Appointments() {
   const upcoming = appointments.filter(a => a.status !== 'completed' && a.status !== 'cancelled');
   const past = appointments.filter(a => a.status === 'completed' || a.status === 'cancelled');
 
-  return (
-    <div className="max-w-2xl mx-auto space-y-5">
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="font-semibold text-ob">Appointments</h3>
+ return (
+  <div className="max-w-2xl mx-auto space-y-5">
+
+    <button
+      onClick={() => onNavigate("dashboard")}
+      className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+    >
+      <ArrowLeft className="w-5 h-5" />
+      Back
+    </button>
+
+    <div className="flex items-center justify-between">
+      <div>
+        <h3 className="font-semibold text-ob">Appointments</h3>
           <p className="text-si text-sm">{upcoming.length} upcoming appointment{upcoming.length !== 1 ? 's' : ''}</p>
         </div>
         <button onClick={() => setShowForm(true)} className="btn-primary text-sm py-2 px-4 flex items-center gap-1.5">

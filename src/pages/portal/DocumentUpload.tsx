@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Upload, FileText, CheckCircle2, Clock, XCircle, Trash2, AlertCircle, Eye, Download, RefreshCw, X } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props { applicationId: string | null; onNavigate: (id: NavId) => void; onStepComplete: (id: NavId) => void; }
 
@@ -126,6 +127,14 @@ export default function DocumentUpload({ applicationId, onNavigate, onStepComple
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
+      <button
+  type="button"
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
       {/* Progress bar */}
       <div className="card p-5">
         <div className="flex items-center justify-between mb-2">

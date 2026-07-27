@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Bell, Shield, Moon, Globe, Trash2, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { ArrowLeft } from "lucide-react";
 
 type Notifications = { email: boolean; sms: boolean; portal: boolean; loan: boolean; visa: boolean };
 
@@ -19,7 +20,13 @@ const Toggle = ({ k, label, desc, notifications, onToggle }: { k: keyof Notifica
   </div>
 );
 
-export default function SettingsPage() {
+import type { NavId } from "../Portal";
+
+export default function SettingsPage({
+  onNavigate,
+}: {
+  onNavigate: (id: NavId) => void;
+}) {
   const [notifications, setNotifications] = useState({ email: true, sms: false, portal: true, loan: true, visa: true });
   const [saved, setSaved] = useState(false);
 
@@ -27,8 +34,26 @@ export default function SettingsPage() {
 
   const save = () => { setSaved(true); setTimeout(() => setSaved(false), 2500); };
 
-  return (
-    <div className="max-w-2xl mx-auto space-y-5">
+return (
+  <div className="max-w-2xl mx-auto space-y-5">
+
+    <button
+      type="button"
+      onClick={() => onNavigate("dashboard")}
+      className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+    >
+      <ArrowLeft className="w-5 h-5" />
+      Back
+    </button>
+
+    {saved && (
+      <div className="flex items-center gap-2 p-3 bg-success-500/15 border border-success-500/20 rounded-xl text-success-600 text-sm">
+        <CheckCircle2 className="w-4 h-4" />
+        Settings saved.
+      </div>
+    )}
+
+    {/* Notifications */}
       {saved && <div className="flex items-center gap-2 p-3 bg-success-500/15 border border-success-500/20 rounded-xl text-success-600 text-sm"><CheckCircle2 className="w-4 h-4" /> Settings saved.</div>}
 
       {/* Notifications */}

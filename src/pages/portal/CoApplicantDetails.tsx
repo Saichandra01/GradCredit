@@ -3,6 +3,7 @@ import { Plus, ChevronRight, ChevronDown, Trash2, Save, CheckCircle2, User, Edit
 import { supabase } from '../../lib/supabase';
 import { downloadSectionPdf } from '../../lib/pdf';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props { applicationId: string | null; onNavigate: (id: NavId) => void; onStepComplete: (id: NavId) => void; }
 
@@ -96,8 +97,8 @@ function CoApplicantForm({ coApp, onChange, onSave, saving }: { coApp: CoApplica
   const updFin = (k: string, v: any) => onChange({ ...coApp, financial_info: { ...coApp.financial_info, [k]: v } });
 
   return (
-    <div className="space-y-8">
-      {/* Relationship */}
+  <div className="space-y-8">
+    {/* Relationship */}
       <div>
         <h3 className="font-semibold text-ob/60 text-xs uppercase tracking-widest mb-4">Relationship & Basic Details</h3>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -264,9 +265,19 @@ export default function CoApplicantDetails({ applicationId, onNavigate, onStepCo
 
   if (loading) return <div className="text-center py-12 text-si">Loading...</div>;
 
-  return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      {/* Header info */}
+return (
+  <div className="max-w-3xl mx-auto space-y-6">
+
+    <button
+      onClick={() => onNavigate("dashboard")}
+      type="button"
+      className="flex items-center gap-2 text-gray-600 hover:text-black font-medium"
+    >
+      <ArrowLeft className="w-5 h-5" />
+      Back
+    </button>
+
+    {/* Header info */}
       <div className="p-4 bg-sg/40 border border-sg/40 rounded-xl flex items-start gap-3">
         <AlertCircle className="w-5 h-5 text-si shrink-0 mt-0.5" />
         <div className="text-sm text-si">

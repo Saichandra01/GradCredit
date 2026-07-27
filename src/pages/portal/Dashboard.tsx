@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FileText, Upload, CreditCard, TrendingUp, ArrowRight, AlertCircle, CheckCircle2, Calendar, Users, Clock } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 const APP_STEPS: { id: NavId; label: string; icon: typeof FileText }[] = [
   { id: 'personal', label: 'Personal Info', icon: FileText },

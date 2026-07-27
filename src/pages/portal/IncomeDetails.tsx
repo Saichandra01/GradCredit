@@ -3,6 +3,7 @@ import { Save, CheckCircle2, ChevronRight, Download } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { downloadSectionPdf } from '../../lib/pdf';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props { applicationId: string | null; onNavigate: (id: NavId) => void; onStepComplete: (id: NavId) => void; }
 
@@ -52,6 +53,14 @@ export default function IncomeDetails({ applicationId, onNavigate, onStepComplet
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
+      <button
+  type="button"
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
       <div className="card p-6">
         <h2 className="font-bold text-ob text-base mb-1">Income Details (Student)</h2>
         <p className="text-si text-sm mb-6">Provide details of your own income, if any. Most students do not have an income — this section is optional.</p>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CheckCircle2, Clock, Circle, ChevronDown } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { ArrowLeft } from "lucide-react";
 
 const MILESTONES = [
   { step: 1, label: 'Application Registered', desc: 'Student account created and application started.' },
@@ -35,7 +36,15 @@ const statusBadge: Record<string, string> = {
   enrolled: 'bg-ob text-pw',
 };
 
-export default function ApplicationStatus({ applicationId }: { applicationId: string | null }) {
+interface ApplicationStatusProps {
+  applicationId: string | null;
+  onNavigate: (page: string) => void;
+}
+
+export default function ApplicationStatus({
+  applicationId,
+  onNavigate,
+}: ApplicationStatusProps) {
   const [apps, setApps] = useState<any[]>([]);
   const [selected, setSelected] = useState<any>(null);
   const [coApplicants, setCoApplicants] = useState<any[]>([]);
@@ -63,18 +72,40 @@ export default function ApplicationStatus({ applicationId }: { applicationId: st
   };
 
   if (loading) return <div className="text-center py-12 text-si">Loading...</div>;
-  if (apps.length === 0) return (
-    <div className="max-w-lg mx-auto py-12 text-center card p-10">
-      <p className="text-si">No applications yet.</p>
+ if (apps.length === 0)
+  return (
+    <div className="max-w-lg mx-auto space-y-4">
+
+      <button
+        onClick={() => onNavigate("dashboard")}
+        className="flex items-center gap-2 text-gray-600 hover:text-black font-medium"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        Back
+      </button>
+
+      <div className="text-center card p-10">
+        <p className="text-si">No applications yet.</p>
+      </div>
+
     </div>
   );
 
   const currentStep = selected ? (STATUS_STEP[selected.status] ?? 1) : 1;
   const pct = Math.round((currentStep / MILESTONES.length) * 100);
 
-  return (
-    <div className="max-w-3xl mx-auto space-y-5">
-      {/* Selector */}
+return (
+  <div className="max-w-3xl mx-auto space-y-5">
+
+   <button
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
+
+    {/* Selector */}
       {apps.length > 1 && (
         <div className="card p-4">
           <label className="label">Select Application</label>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Bell, CheckCircle2, Info, AlertTriangle, Zap, Check } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { ArrowLeft } from "lucide-react";
 
 const typeConfig: Record<string, { icon: typeof Bell; bg: string; border: string; iconColor: string }> = {
   info: { icon: Info, bg: 'bg-si/20', border: 'border-sg/40', iconColor: 'text-ob' },
@@ -9,7 +10,15 @@ const typeConfig: Record<string, { icon: typeof Bell; bg: string; border: string
   action_required: { icon: Zap, bg: 'bg-error-500/15', border: 'border-error-500/20', iconColor: 'text-error-600' },
 };
 
-export default function Notifications({ onRead }: { onRead: () => void }) {
+interface NotificationsProps {
+  onRead: () => void;
+  onNavigate: (page: string) => void;
+}
+
+export default function Notifications({
+  onRead,
+  onNavigate,
+}: NotificationsProps) {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -41,6 +50,13 @@ export default function Notifications({ onRead }: { onRead: () => void }) {
     <div className="max-w-2xl mx-auto space-y-4">
       <div className="flex items-center justify-between">
         <div>
+          <button
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
           <h3 className="font-semibold text-ob">Notifications</h3>
           <p className="text-si text-sm">{unreadCount > 0 ? `${unreadCount} unread` : 'All caught up'}</p>
         </div>

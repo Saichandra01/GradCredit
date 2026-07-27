@@ -3,6 +3,7 @@ import { Save, CheckCircle2, ChevronRight, CreditCard, Home, Info, Download } fr
 import { supabase } from '../../lib/supabase';
 import { downloadSectionPdf } from '../../lib/pdf';
 import type { NavId } from '../Portal';
+import { ArrowLeft } from "lucide-react";
 
 interface Props {
   applicationId: string | null;
@@ -98,6 +99,14 @@ export default function LoanRequirement({ applicationId, onNavigate, onStepCompl
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
+      <button
+  type="button"
+  onClick={() => onNavigate("dashboard")}
+  className="flex items-center gap-2 text-gray-600 hover:text-black font-medium mb-4"
+>
+  <ArrowLeft className="w-5 h-5" />
+  Back
+</button>
 
       {/* Loan Type Selector — prominent at the top */}
       <div className="card p-6">
