@@ -53,7 +53,7 @@ export default function Navbar({
           </a>
 
           {/* Desktop nav */}
-         <nav className="hidden md:flex items-center gap-6">
+         <nav className="hidden lg:flex items-center gap-4 whitespace-nowrap">
   {navLinks.map((l) => (
     <a
       key={l.label}
@@ -84,7 +84,7 @@ export default function Navbar({
         : "text-white/70 hover:text-white"
     }`}
   >
-    Employee Login
+    Employee
   </button>
 </nav>
 

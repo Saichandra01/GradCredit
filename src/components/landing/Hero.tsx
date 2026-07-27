@@ -9,8 +9,7 @@ const loanOffers = [
 
 export default function Hero({ onApply, onCheckEligibility }: { onApply: () => void; onCheckEligibility: () => void }) {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
-      {/* Background — dark charcoal gradient with radial lighting */}
+<section className="relative min-h-[80vh] flex items-center overflow-hidden pt-8">      {/* Background — dark charcoal gradient with radial lighting */}
       <div className="absolute inset-0 bg-gradient-hero" />
       <div className="absolute inset-0 dot-pattern opacity-30" />
       {/* Soft radial glow */}
@@ -19,8 +18,8 @@ export default function Hero({ onApply, onCheckEligibility }: { onApply: () => v
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
       <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-white/[0.02] rounded-full blur-2xl animate-float pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8 w-full">
+       <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left side */}
           <div className="max-w-xl">
             {/* Badge */}
@@ -30,7 +29,7 @@ export default function Hero({ onApply, onCheckEligibility }: { onApply: () => v
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-4 text-balance animate-slide-up">
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight mb-4 text-balance animate-slide-up">
               Your Dream University <span className="text-white/60">Starts Here</span>
             </h1>
 
@@ -48,7 +47,7 @@ export default function Hero({ onApply, onCheckEligibility }: { onApply: () => v
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-wrap gap-4 mb-10 animate-slide-up">
+            <div className="flex flex-wrap gap-4 mb-6 animate-slide-up">
               <button
                 onClick={onApply}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#222222] font-semibold rounded-xl
@@ -79,7 +78,7 @@ export default function Hero({ onApply, onCheckEligibility }: { onApply: () => v
           </div>
 
           {/* Right side — Interactive Loan Comparison Dashboard */}
-          <div className="hidden lg:block relative">
+          <div className="hidden lg:block relative lg:scale-90 xl:scale-95 origin-center">
             <HeroDashboard />
           </div>
         </div>
