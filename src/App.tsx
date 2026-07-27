@@ -120,28 +120,37 @@ if (view === 'admin') {
   <>
 
 <LandingPage
-  onLogin={() => setView('auth')}
-  onRegister={() => setView('auth')}
-  onEmployeeLogin={() => setView('employeeLogin')}
+  onLogin={() => {
+    setAuthMode("login");
+    setView("auth");
+  }}
 
-      onCheckEligibility={() => {
-        supabase.auth.getSession().then(({ data }) => {
-          if (data.session) {
-            const email = data.session.user.email ?? '';
+  onRegister={() => {
+    setAuthMode("register");
+    setView("auth");
+  }}
 
-            if (ADMIN_EMAILS.includes(email)) {
-              setView('admin');
-            } else {
-              setPendingEligibility(true);
-              setView('portal');
-            }
-          } else {
-            setPendingEligibility(true);
-            setView('auth');
-          }
-        });
-      }}
-    />
+  onEmployeeLogin={() => setView("employeeLogin")}
+
+  onCheckEligibility={() => {
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) {
+        const email = data.session.user.email ?? "";
+
+        if (ADMIN_EMAILS.includes(email)) {
+          setView("admin");
+        } else {
+          setPendingEligibility(true);
+          setView("portal");
+        }
+      } else {
+        setAuthMode("login");
+        setPendingEligibility(true);
+        setView("auth");
+      }
+    });
+  }}
+/>
   </>
 );
 }
